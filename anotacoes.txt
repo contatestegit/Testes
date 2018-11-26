@@ -1,6 +1,12 @@
 contatestegit
 cara_de_comida@yahoo.com.br
 
+Referência 	imasters
+			bitbucket
+		   	git para corajosos Rebase (Parte 1)
+
+git log --graph --oneline
+
 Utilizando o GitHub
 
 -> Criando Repositórios Remotos 
@@ -8,14 +14,85 @@ Comando: git remote
 	Verificar quais são os repositórios remotos existentes. Quando clonamos um repositório, temos ao menos um remote chamado "Origin".
 	
 Comando: git remote add (nome_do_repositório) (URL_do_repositório)
+	Adicionar um repositório
 
 Comando: git remote -v
 	Mostra a URL em que o repositório foi armazenado.
 
+-> Git Fetch
+	Faz o Download de novos dados do repositório remoto mas não realiza o merge com os dados do repositório local.
+
+-> Git Merge
+	Se uma linha aparecer nos dois arquivos então ela deverá ser mantida no arquivo final.
+	Se uma linha aparecer no arquivo original mas tiver sido excluida em um dos arquivos dos colaboradores, então devemos excluí-la do arquivo final.
+	Se uma linha aparecer no arquivo de um dos colaboradores mas não estiver no arquivo original, então ela deve ser mantida no final.
+
+	Quando fazemos o merge, o histórico de commits de ambos os branches são acoplados.
+
+	git checkout Feature
+	git merge master -> estamos acoplando o branch feature com a master
+
+	Conflitos de merge:
+		Quando receber um conflito seguir os seguintes passos 
+		1) git merge --abort para retornar os arquivos ao estado antes do comando merge;
+		2) verificar o estados dos arquivos usando git log e git diff;
+		3) criar um commit com as mudanças realizadas;
+		4) tente realizar o merge novamente;
+
+		Se rodarmos o comando git log novamente, teremos a mensagem informando que acabamos de realizar um merge
+
+	Bonus: git show (id_do_commit) 
+		Mostra as diferenças entre o commit e seu pai;
+
+Comando: git merge (nome_dos_branches_que_deseja_fazer_o_merge) 
+	Obs: O branch que estamos também será incluido no merge
+
+-> Git Pull  
+Comando: git pull (nome_do_repositório_remoto) (nome_do_repositório_local)
+
+	Este comando irá sincronizar o repositório remoto com o repostório local. Além disso, ele tenta realizar um merge entre as mudanças remotas e locais. Podem ocorrer "merge conflicts" 
+ 
+-> Git Push    	
+	Se quisermos mandar para o repositório remoto nossas mudanças usaremos o seguinte comando:
+Comando: git push (nome_do_repositório_remoto) (nome_do_repositório_local)
+
+Obs: Temos que executar o git pull antes. Isso é uma forma de termos o repositório local sempre atualizado e evitarmos possíveis conflitos entre os projetos.
+
+Mas antes devemos lembrar de:
+Adicionar as mudanças feitas para a staged area
+Fazer o commit das mudanças 
+
+-> Git Fork
+	Isso deve ser feito diretamente no repositório remoto. O fork é uma ferramenta que permite realizar uma cópia de um repositório de outra pessoa
+	para o seu com apenas um clique. 
+
+-> Git Rebase
+	Essa alternativa moverá todos os commits realizados na branch auxiliar para a extremidade da master (se estiver sendo feito o merge com a master). 
+	Dessa forma obteremos um histórico linear das mudanças realizadas
 	
--> Git Push 
+	Nao utilizar em branches públicos 
+
+	Force Pushing
+		Se tentarmos fazer um "Push" da branch na qual foi realizada o rebase para o repositório remoto, o git irá impedir a ação.
+		Podemos então forçar essa ação usando o comando git push --force.
+		Isso no entanto poderá ocasionar uma confusão nas outras pessoas que estão trabalhando, então é necessário ter certo cuidado com esse comando.
+
+		
+		
 
 -> Pull Requests
 -> Merge Request
-	
+-> Criação de Feature Branches 
+	1) Introduzir novas funcionalidades; (Feature)
+	2) Corrigir comportamento inesperado; (bug)
+	3) Alterar a forma, mantendo o comportamento(refatoração); (refactor)
+
+************************************************************************************************************************************************
+
+Sobre o Docker
+
+
+*************************************************************************************************************************************************
+
+
 	
