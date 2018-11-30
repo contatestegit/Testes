@@ -4,6 +4,8 @@ cara_de_comida@yahoo.com.br
 Referência 	imasters
 			bitbucket
 		   	git para corajosos Rebase (Parte 1)
+			tableless.com.br
+			mundodocker.com.br
 
 git log --graph --oneline
 
@@ -77,9 +79,6 @@ Fazer o commit das mudanças
 		Podemos então forçar essa ação usando o comando git push --force.
 		Isso no entanto poderá ocasionar uma confusão nas outras pessoas que estão trabalhando, então é necessário ter certo cuidado com esse comando.
 
-		
-		
-
 -> Pull Requests
 -> Merge Request
 -> Criação de Feature Branches 
@@ -87,12 +86,52 @@ Fazer o commit das mudanças
 	2) Corrigir comportamento inesperado; (bug)
 	3) Alterar a forma, mantendo o comportamento(refatoração); (refactor)
 
+-> Passo a Passo de Como Subir as Atualizações do Branch para O repositório remoto
+	1) Utilizar o git add para jogar os arquivos modificados para a área de preparação
+	2) Fazer o commit das mudanças realizadas
+	3) NO SEU BRANCH DE TRABALHO fazer o push force usando o comando git push -f
+	4) Agora sim podemos fazer a mudança para a master
+	5) NA MASTER, fazemos o git pull para verificar se há atualizações disponíveis
+	6) Em seguida fazemos o git pull --rebase
+	7) Fazemos uma nova troca para o SEU BRANCH DE TRABALHO
+	8) Agora fazemos o rebase dentro do branch de trabalho usando o comando git rebase -i HEAD~2
+		Obs: Este número é relativo a quantidade de commits realizados neste branch atual 
+	9) Depois de todos esse passos estamos prontos para fazer o push no SEU BRANCH DE TRABALHO, desta vez usando git push -f
+	10) Terminamos o processo de atualização. Verificar no repositório remot se as atualizações já foram realizadas e então faça um merge Request
+
+	
+
 ************************************************************************************************************************************************
 
 Sobre o Docker
 
+-> Introdução
+	O que são os containers?
+
 
 *************************************************************************************************************************************************
 
+************************************************************************************************************************************************
 
+Sobre Goroutines e Channels
+
+
+*************************************************************************************************************************************************
 	
+************************************************************************************************************************************************
+
+Download Insomnia
+		 Metabooks 
+Variáveis de Ambiente
+Arquivos Teste
+Docker Compose Up: Subir o docker
+
+*************************************************************************************************************************************************
+	
+*************************************************************************************************************************************************
+Leitura de arquivos XML em golang
+
+
+
+
+*************************************************************************************************************************************************
