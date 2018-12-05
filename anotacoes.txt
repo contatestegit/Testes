@@ -111,8 +111,7 @@ Sobre o Docker
 
 *************************************************************************************************************************************************
 
-************************************************************************************************************************************************
-
+*************************************************************************************************************************************************
 Sobre Goroutines e Channels
 
 
@@ -126,10 +125,17 @@ Variáveis de Ambiente
 Arquivos Teste
 Docker Compose Up: Subir o docker
 
+Links Necessários:
+	https://github.com/spf13/cobra/blob/master/cobra.go
+	https://github.com/kr/pretty
+	https://github.com/golang/dep
+	https://stackoverflow.com/questions/10748453/replace-comma-with-newline-in-sed
+	https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis
+	https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html
 *************************************************************************************************************************************************
 	
 *************************************************************************************************************************************************
-Leitura de arquivos XML em golang
+Leitura de Arquivo XML utilizando GoLang e Como executar o Parsing destes arquivos.
 
 
 
