@@ -6,6 +6,11 @@ Referência 	imasters
 		   	git para corajosos Rebase (Parte 1)
 			tableless.com.br
 			mundodocker.com.br
+			https://astaxie.gitbooks.io/build-web-application-with-golang/pt-br/06.1.html
+			Alura
+			Udemy
+
+
 
 git log --graph --oneline
 
@@ -132,6 +137,13 @@ Links Necessários:
 	https://stackoverflow.com/questions/10748453/replace-comma-with-newline-in-sed
 	https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis
 	https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html
+	https://zupzup.org/go-http-file-upload-download/
+	https://stackoverflow.com/questions/44563088/http-request-get-file-name-from-url
+	https://golangcode.com/download-a-file-from-a-url/
+	http://www.cihanozhan.com/building-login-and-register-application-with-golang/
+	https://www.sohamkamani.com/blog/2018/02/25/golang-password-authentication-and-storage/
+	https://astaxie.gitbooks.io/build-web-application-with-golang/en/14.4.html
+	https://www.sohamkamani.com/blog/2018/03/25/golang-session-authentication/
 *************************************************************************************************************************************************
 	
 *************************************************************************************************************************************************
@@ -140,4 +152,38 @@ Leitura de Arquivo XML utilizando GoLang e Como executar o Parsing destes arquiv
 
 
 
+*************************************************************************************************************************************************
+
+*************************************************************************************************************************************************
+Vamos Aprender Sessions e Cookies e como utilizá-los em Golang (WEB application with Golang)
+
+Referências: https://medium.com/@piraveenaparalogarajah/sessions-and-cookies-2c0919552f29
+			 https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=pt-br
+			 https://klauslaube.com.br/2012/05/14/o-cache-e-o-http.html
+			 https://www.theodinproject.com/courses/ruby-on-rails/lessons/sessions-cookies-and-authentication
+			 https://www.gorillatoolkit.org/pkg/sessions
+			 https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
+
+Sobre Protocolo HTTP
+1) Sistema Cliente Servidor (Browser/Sites)
+2) Stateless Protocol
+3) Application Layer (TCP/IP)
+4) Ações solicitadas pelos clientes que serão executadas pelo servidor (GET/POST/PUT/DELETE)
+5) Retorno de Status dos Estados
+6) Headers
+
+Cache HTTP
+	Conceito: O cache é uma espécie de depósito, onde os dados e processos utilizados mais frequentemente por um programa ficam armazenados
+	na memória temporária do dispositivo, Assim, quanto mais você usa um determinado aplicativo, mais rápido ele deve abrir, o que poupa
+	tempo e diminui o uso do hardware.
+
+
+
+
+
+
+
+x O protocolo HTTP é dito stateless, isto é, o server não armazena informção sobre requisições passsadas. Dessa forma, por que quando 
+trocamos de página em um website não necessitamos realizar login novamente? 
+	Para isso utilizamos cookies.
 *************************************************************************************************************************************************
