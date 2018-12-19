@@ -148,6 +148,8 @@ Links Necessários:
 	https://tech.townsourced.com/post/anatomy-of-a-go-web-app-authentication/ Parte 2
 	https://gist.github.com/varver/f327ef9087ebf76aa4c4 Tutorial Login
 	http://sandipbgt.com/2018/08/23/scraping-tutorial-with-golang/ Tutorial Login II
+	https://www.devdungeon.com/content/web-scraping-go#log_in_to_website
+	https://forum.golangbridge.org/t/using-http-client-how-to-make-requests-with-connection-keep-alive-header/5191
 
 
 *************************************************************************************************************************************************
