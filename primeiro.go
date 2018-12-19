@@ -2,107 +2,109 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"log"
 	"net/http"
+	"net/http/cookiejar"
+	"net/url"
+	"os"
+	"strconv"
+
+	"github.com/pkg/errors"
+	"golang.org/x/net/publicsuffix"
 )
 
-// ///package main
+const (
+	baseURL = "http://admsite.b2w"
+)
 
-// import (
-// 	"context"
-// 	"fmt"
-// 	"io"
-// 	"io/ioutil"
-// 	"os"
+type App struct {
+	Client *http.Client
+}
 
-// 	"github.com/kr/pretty"
-// 	"gitlab.b2w/team/alpha/omega.git/aggregation/sitemanager"
-// )
+type AuthenticationCookies struct {
+	Cookies []*http.Cookie
+}
 
-// type AnywayReader struct {
-// 	reader io.Reader
-// }
+func (app *App) login(username string, password string) {
+	client := app.Client
 
-// func (r *AnywayReader) FetchContent(context.Context) (content []byte, err error) {
-// 	return ioutil.ReadAll(r.reader)
-// }
-
-// func NewAnywayReader(r io.Reader) *AnywayReader {
-// 	return &AnywayReader{r}
-// }
-
-func IsEmpty(data string) bool {
-	if len(data) == 0 {
-		return true
-	} else {
-		return false
+	loginFormURL := baseURL + "/SiteManagerWeb/login.jsp"
+	fmt.Printf("Acessando formulario de login.\n")
+	resp, err := client.Get(loginFormURL)
+	if err != nil {
+		log.Fatalln(err)
+		return
 	}
+	fmt.Printf("Formulario de login lido com sucesso.\n")
+
+	data := url.Values{
+		"j_username": {username},
+		"j_password": {password},
+	}
+
+	fmt.Printf("Postando dados para o Formulario.\n")
+	loginPostURL := baseURL + "/SiteManagerWeb/j_security_check"
+	resp, err = client.PostForm(loginPostURL, data)
+	if err != nil {
+		// erro fatal, não consegui acessar a página
+		log.Fatalln(err)
+	}
+	fmt.Printf("Dados postados com sucesso.\n")
+
+	// Validar se o login deu certo
+	if resp.StatusCode != http.StatusOK {
+		log.Fatalln(errors.Wrap(errors.New("Erro "+strconv.Itoa(resp.StatusCode)+" na requisição"), "bla"))
+	}
+	//	pretty.Println(resp)
+
+	defer resp.Body.Close()
+	return
 }
 
 func main() {
 
-	uName, email, pwd, pwdConfirm := "", "", "", ""
-
-	mux := http.NewServeMux()
-
-	// Signup
-	mux.HandleFunc("/signup", func(w http.ResponseWriter, r *http.Request) {
-		r.ParseForm()
-
-		/*
-		   // Available for testing.
-		   for key, value := range r.Form {
-		       fmt.Printf("%s = %s\n", key, value)
-		   }
-		*/
-
-		uName = r.FormValue("username")     // Data from the form
-		email = r.FormValue("email")        // Data from the form
-		pwd = r.FormValue("password")       // Data from the form
-		pwdConfirm = r.FormValue("confirm") // Data from the form
-
-		// Empty data checking
-		uNameCheck := IsEmpty(uName)
-		emailCheck := IsEmpty(email)
-		pwdCheck := IsEmpty(pwd)
-		pwdConfirmCheck := IsEmpty(pwdConfirm)
-
-		if uNameCheck || emailCheck || pwdCheck || pwdConfirmCheck {
-			fmt.Fprintf(w, "ErrorCode is -10 : There is empty data.")
-			return
-		}
-
-		if pwd == pwdConfirm {
-			// Save to database (username, email and password)
-			fmt.Fprintln(w, "Registration successful.")
-		} else {
-			fmt.Fprintln(w, "Password information must be the same.")
-		}
+	cj, err := cookiejar.New(&cookiejar.Options{
+		PublicSuffixList: publicsuffix.List,
 	})
 
-	// Login
-	mux.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
-		r.ParseForm()
+	if err != nil {
+		log.Fatalln(err)
+	}
 
-		email = r.FormValue("email")  // Data from the form
-		pwd = r.FormValue("password") // Data from the form
+	app := App{
+		Client: &http.Client{Jar: cj},
+	}
+	username := "wedney.lima.Acom"
+	password := "Acom#1234"
 
-		// Empty data checking
-		emailCheck := IsEmpty(email)
-		pwdCheck := IsEmpty(pwd)
+	app.login(username, password)
 
-		if emailCheck || pwdCheck {
-			fmt.Fprintf(w, "ErrorCode is -10 : There is empty data.")
-			return
-		}
+	u, err := url.Parse("http://admsite.b2w/SiteManagerWeb/")
+	ac := AuthenticationCookies{
+		Cookies: cj.Cookies(u),
+	}
+	fmt.Println(ac.Cookies)
 
-		dbPwd := "1234!*."                   // DB simulation
-		dbEmail := "cihan.ozhan@hotmail.com" // DB simulation
+	req, err := http.NewRequest("GET", "http://admsite.b2w/SiteManagerWeb/menu/menuXML.do?id=203682", nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	req.Header.Set(ac.Cookies[0].Name, ac.Cookies[0].Value)
+	resp, err := app.Client.Do(req)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer resp.Body.Close()
 
-		if email == dbEmail && pwd == dbPwd {
-			fmt.Fprintln(w, "Login succesful!")
-		} else {
-			fmt.Fprintln(w, "Login failed!")
-		}
-	})
-	http.ListenAndServe(":8080", mux)
+	outFile, err := os.Create("output.xml")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer outFile.Close()
+
+	_, err = io.Copy(outFile, resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

@@ -144,6 +144,12 @@ Links Necessários:
 	https://www.sohamkamani.com/blog/2018/02/25/golang-password-authentication-and-storage/
 	https://astaxie.gitbooks.io/build-web-application-with-golang/en/14.4.html
 	https://www.sohamkamani.com/blog/2018/03/25/golang-session-authentication/
+	https://tech.townsourced.com/post/anatomy-of-a-go-web-app/ Parte 1
+	https://tech.townsourced.com/post/anatomy-of-a-go-web-app-authentication/ Parte 2
+	https://gist.github.com/varver/f327ef9087ebf76aa4c4 Tutorial Login
+	http://sandipbgt.com/2018/08/23/scraping-tutorial-with-golang/ Tutorial Login II
+
+
 *************************************************************************************************************************************************
 	
 *************************************************************************************************************************************************
