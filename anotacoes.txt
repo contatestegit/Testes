@@ -150,6 +150,9 @@ Links Necessários:
 	http://sandipbgt.com/2018/08/23/scraping-tutorial-with-golang/ Tutorial Login II
 	https://www.devdungeon.com/content/web-scraping-go#log_in_to_website
 	https://forum.golangbridge.org/t/using-http-client-how-to-make-requests-with-connection-keep-alive-header/5191
+	https://stackoverflow.com/questions/12130582/setting-cookies-with-net-http
+	https://golang.org/src/net/http/cookie.go
+	https://forum.golangbridge.org/t/using-http-client-how-to-make-requests-with-connection-keep-alive-header/5191
 
 
 *************************************************************************************************************************************************

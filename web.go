@@ -19,8 +19,8 @@ func value_handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Number")
 }
 
-func main() {
-	http.HandleFunc("/", index_handler)
-	http.HandleFunc("/continue", value_handler)
-	http.ListenAndServe(":8000", nil)
-}
+// func main() {
+// 	http.HandleFunc("/", index_handler)
+// 	http.HandleFunc("/continue", value_handler)
+// 	http.ListenAndServe(":8000", nil)
+// }

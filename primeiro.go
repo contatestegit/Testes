@@ -8,59 +8,53 @@ import (
 	"net/http/cookiejar"
 	"net/url"
 	"os"
-	"strconv"
 
-	"github.com/pkg/errors"
 	"golang.org/x/net/publicsuffix"
 )
 
-const (
-	baseURL = "http://admsite.b2w"
-)
+// const (
+// 	baseURL = "http://admsite.b2w"
+// )
 
-type App struct {
-	Client *http.Client
-}
+// type App struct {
+// 	Client *http.Client
+// }
 
-type AuthenticationCookies struct {
-	Cookies []*http.Cookie
-}
+// type AuthenticationCookies struct {
+// 	Cookies []*http.Cookie
+// }
 
-func (app *App) login(username string, password string) {
-	client := app.Client
+// func (app *App) Login(username string, password string) error {
+// 	client := app.Client
 
-	loginFormURL := baseURL + "/SiteManagerWeb/login.jsp"
-	fmt.Printf("Acessando formulario de login.\n")
-	resp, err := client.Get(loginFormURL)
-	if err != nil {
-		log.Fatalln(err)
-		return
-	}
-	fmt.Printf("Formulario de login lido com sucesso.\n")
+// 	loginFormURL := baseURL + "/SiteManagerWeb/login.jsp"
 
-	data := url.Values{
-		"j_username": {username},
-		"j_password": {password},
-	}
+// 	resp, err := client.Get(loginFormURL)
 
-	fmt.Printf("Postando dados para o Formulario.\n")
-	loginPostURL := baseURL + "/SiteManagerWeb/j_security_check"
-	resp, err = client.PostForm(loginPostURL, data)
-	if err != nil {
-		// erro fatal, não consegui acessar a página
-		log.Fatalln(err)
-	}
-	fmt.Printf("Dados postados com sucesso.\n")
+// 	if err != nil {
+// 		log.Fatalln(err)
+// 		return nil
+// 	}
 
-	// Validar se o login deu certo
-	if resp.StatusCode != http.StatusOK {
-		log.Fatalln(errors.Wrap(errors.New("Erro "+strconv.Itoa(resp.StatusCode)+" na requisição"), "bla"))
-	}
-	//	pretty.Println(resp)
+// 	data := url.Values{
+// 		"j_username": {username},
+// 		"j_password": {password},
+// 	}
 
-	defer resp.Body.Close()
-	return
-}
+// 	loginPostURL := baseURL + "/SiteManagerWeb/j_security_check"
+// 	resp, err = client.PostForm(loginPostURL, data)
+
+// 	if err != nil {
+// 		log.Fatalln(err)
+// 	}
+
+// 	if resp.StatusCode != http.StatusOK {
+// 		log.Fatalln(errors.Wrap(errors.New("Erro "+strconv.Itoa(resp.StatusCode)+" na requisição"), "bla"))
+// 	}
+
+// 	defer resp.Body.Close()
+// 	return nil
+// }
 
 func main() {
 
